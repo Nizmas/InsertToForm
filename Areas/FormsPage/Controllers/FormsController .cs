@@ -23,6 +23,10 @@ namespace InsertToForm.Controllers
         }
         public string Post([FromBody] ClientInfo client)
         {
+            DataValid dv = new DataValid();
+            if (!dv.isValidDatas(client.LastName, client.FirstName, client.MiddleName, client.BirthDate, client.LoanSum))
+                return "Проверьте правильность введённых данных";
+
             DateTime currentDate = DateTime.Now;
             string pathFolderTemplates = AppDomain.CurrentDomain.BaseDirectory + "Resources\\";
             string pathTemplate = pathFolderTemplates + client.TemplateName + ".docx";

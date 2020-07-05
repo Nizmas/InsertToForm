@@ -11,7 +11,7 @@ namespace InsertToForm.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string BirthDate { get; set; }
-        public string LoanSum { get; set; }
+        public int LoanSum { get; set; }
         public string Image { get; set; }
         public string TemplateName { get; set; }
         public string FolderName { get; set; }

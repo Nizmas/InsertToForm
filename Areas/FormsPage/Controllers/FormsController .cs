@@ -14,7 +14,7 @@ using Org.BouncyCastle.Crypto.Engines;
 /// </summary>
 namespace InsertToForm.Controllers
 {
-    public class ValuesController : ApiController
+    public class FormsController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()

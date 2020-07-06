@@ -212,9 +212,6 @@
     <Compile Include="Areas\FormsPage\UtilCode\Replacer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\FormsPage\Views\Forms\Forms.js" />
-    <Content Include="Areas\FormsPage\Views\Forms\formStyles.css" />
-    <Content Include="Areas\FormsPage\Views\Formular\formStyles.css" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -254,7 +251,6 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Areas\FormsPage\Views\Forms\Index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -272,6 +268,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\FormsPage\Views\Forms\" />
     <Folder Include="Resources\" />
     <Folder Include="Views\Inserter\" />
   </ItemGroup>

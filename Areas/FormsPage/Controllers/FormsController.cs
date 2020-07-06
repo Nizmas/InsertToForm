@@ -9,6 +9,8 @@ using System.Text.RegularExpressions;
 using Org.BouncyCastle.Crypto.Engines;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using System.Linq;
+using DocumentFormat.OpenXml.Presentation;
 
 /// <summary>
 /// Контроллер для заполнения клиентских данных в формы, которые находятся в папке Resources,
@@ -18,10 +20,22 @@ namespace InsertToForm.Controllers
 {
     public class FormsController : ApiController
     {
+        static string pathFolderTemplates = AppDomain.CurrentDomain.BaseDirectory + "Resources\\";
+        static string pathFolderDirectories = AppDomain.CurrentDomain.BaseDirectory + "Documents\\";
+        List<string> templatesList = Directory.GetFiles(pathFolderTemplates).ToList<string>();
+        List<string> foldersList = Directory.GetDirectories(pathFolderDirectories).ToList<string>();
+
+
         // GET api/values
-        public IEnumerable<string> Get()
+        public List<string>[] Get()
         {
-           return new string[] { "value1", "value2" };
+            int some = 0;
+            Console.WriteLine(templatesList[some]);
+
+            List<string>[] responseArray = new List<string>[2];
+            responseArray[0] = templatesList;
+            responseArray[1] = foldersList;
+            return responseArray;
         }
 
         public string Post([FromBody] ClientInfo client)
@@ -31,13 +45,14 @@ namespace InsertToForm.Controllers
                 return "Проверьте правильность введённых данных";
 
             DateTime currentDate = DateTime.Now;
-            string pathFolderTemplates = AppDomain.CurrentDomain.BaseDirectory + "Resources\\";
-            string pathTemplate = pathFolderTemplates + client.TemplateName + ".docx";
+            string pathTemplate = templatesList[client.TemplateNum];
 
-            string pathOutputFolder = pathFolderTemplates.Replace("Resources", "Documents") + client.FolderName + "\\";
+            string pathOutputFolder = foldersList[client.FolderNum] + "\\";
             if (!Directory.Exists(pathOutputFolder)) return "Папка не найдена, обратитесь к администратору или выберите другую";
 
-            string newFileName = client.TemplateName + " " + client.FirstName + " " + client.LastName + " от " + currentDate.ToLongDateString().Replace(".", "") + ".docx";
+            string templateName = templatesList[client.TemplateNum].Remove(0, templatesList[client.TemplateNum].LastIndexOf("\\"));
+                templateName = templateName.Remove(templateName.IndexOf("."));
+            string newFileName = templateName + " " + client.FirstName + " " + client.LastName + " от " + currentDate.ToLongDateString().Replace(".", "") + ".docx";
             string pathNewFile = pathOutputFolder + newFileName;
             try
             {

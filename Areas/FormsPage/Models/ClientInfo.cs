@@ -13,7 +13,7 @@ namespace InsertToForm.Models
         public string BirthDate { get; set; }
         public int LoanSum { get; set; }
         public string Image { get; set; }
-        public string TemplateName { get; set; }
-        public string FolderName { get; set; }
+        public int TemplateNum { get; set; }
+        public int FolderNum { get; set; }
     }
 }

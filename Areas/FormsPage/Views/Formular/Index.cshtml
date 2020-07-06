@@ -13,24 +13,27 @@
     <input class="form-birthdate" type="date" placeholder="Дата рождения" /> <br>
     <input class="form-loansum" type="number" placeholder="Сумма займа" /> <br>
 
-    <select class="form-templatename">
-        <option value="templ1" selected>Договор займа</option>
-        <option value="templ2">Заявление на отсрочку</option>
-        <option value="templ3">Заявление на досрочное погашение</option>
-    </select> <br>
+    <div id="templatesBlock"></div> <br>
+    <div id="foldersBlock"></div> <br>
 
-    <select class="form-foldername">
-        <option value="folder1" selected>Общая папка</option>
-        <option value="folder2">Хорошие клиенты</option>
-        <option value="folder3">Лучшие клиенты</option>
-        <option value="folder4">Не лучшие клиенты</option>
-    </select> <br>
     <button id="sentdData">Отправить</button>
+
 </body>
 
 <script type="text/javascript">
     $(document).ready(function () {
         console.info("sterted");
+        $.ajax({
+            url: '/api/forms',
+            type: 'GET',
+            dataType: 'json',
+            success: function (responsedList) {
+                console.log(responsedList[0]);
+                console.log(responsedList[1]);
+                ShowTemplates(responsedList[0]);
+                ShowFolders(responsedList[1]);
+            }
+        });
 
         $("#sentdData").click(function (event) {
             event.preventDefault();
@@ -41,13 +44,10 @@
                 BirthDate: $(".form-birthdate").val().substring(8, 10) + "." + $(".form-birthdate").val().substring(5, 7) + "." + $(".form-birthdate").val().slice(0, -6),
                 LoanSum: parseInt($(".form-loansum").val(), 10),
                 Image: "Here must to be photo",
-                TemplateName: "Template",
-                FolderName: "GoodClients"
+                TemplateNum: parseInt($(".form-templatenum").val(), 10),
+                FolderNum: parseInt($(".form-foldernum").val(), 10)
             };
-
             console.log(client);
-            console.log($(".form-templatename").val());
-            console.log($(".form-foldername").val());
 
             $.ajax({
                 url: '/api/Forms',
@@ -63,4 +63,24 @@
             });
         });
     });
+
+    function ShowTemplates(templatesList) {
+        var strTemplate = "<select class=\"form-templatenum\">";
+        
+        $.each(templatesList, function (index, template) {
+            strTemplate += "<option value=\"" + index + "\">" + template.slice(template.lastIndexOf('\\') + 1) + "</option> ";
+        });
+        strTemplate += "</select>";
+        $("#templatesBlock").html(strTemplate);
+    }
+
+    function ShowFolders(foldersList) {
+        var strFolder = "<select class=\"form-foldernum\">";
+
+        $.each(foldersList, function (index, folder) {
+            strFolder += "<option value=\"" + index + "\">" + folder.slice(folder.lastIndexOf('\\')) + "</option> ";
+        });
+        strFolder += "</select>";
+        $("#foldersBlock").html(strFolder);
+    }
 </script>

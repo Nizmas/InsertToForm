@@ -1,0 +1,20 @@
+.form-lastname {
+    width: 200px;
+    background: rgb(220, 250, 236);
+    margin: 10px 10px 10px 10px;
+    padding: 5px 5px 5px 2px;
+}
+
+.form-firstname {
+    width: 200px;
+    background: rgb(220, 250, 236);
+    margin: 10px 10px 10px 10px;
+    padding: 5px 5px 5px 2px;
+}
+
+.form-middlename {
+    width: 200px;
+    background: rgb(220, 250, 236);
+    margin: 10px 10px 10px 10px;
+    padding: 5px 5px 5px 2px;
+}

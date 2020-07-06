@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<h2>Заполнение шаблона документа</h2>
+<body>
+    <input class="form-lastname" type="text" placeholder="Фамилия" />
+    <input class="form-firstname" type="text" placeholder="Имя" />
+    <input class="form-middlename" type="text" placeholder="Отчество" />
+    <input class="form-birthdate" type="date" placeholder="Дата рождения" /> <br>
+    <input class="form-loansum" type="number" placeholder="Сумма займа" /> <br>
+
+    <select class="form-templatename">
+        <option value="templ1" selected>Договор займа</option>
+        <option value="templ2">Заявление на отсрочку</option>
+        <option value="templ3">Заявление на досрочное погашение</option>
+    </select> <br>
+
+    <select class="form-foldername">
+        <option value="folder1" selected>Общая папка</option>
+        <option value="folder2">Хорошие клиенты</option>
+        <option value="folder3">Лучшие клиенты</option>
+        <option value="folder4">Не лучшие клиенты</option>
+    </select> <br>
+    <button id="sentdData">Отправить</button>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.info("sterted");
+
+        $("#sentdData").click(function (event) {
+            event.preventDefault();
+            var client = {
+                LastName: $(".form-lastname").val(),
+                FirstName: $(".form-firstname").val(),
+                MiddleName: $(".form-middlename").val(),
+                BirthDate: $(".form-birthdate").val().substring(8, 10) + "." + $(".form-birthdate").val().substring(5, 7) + "." + $(".form-birthdate").val().slice(0, -6),
+                LoanSum: parseInt($(".form-loansum").val(), 10),
+                Image: "Here must to be photo",
+                TemplateName: "Template",
+                FolderName: "GoodClients"
+            };
+
+            console.log(client);
+            console.log($(".form-templatename").val());
+            console.log($(".form-foldername").val());
+
+            $.ajax({
+                url: '/api/Forms',
+                type: 'POST',
+                data: JSON.stringify(client),
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    console.log("Ответ от сервера:" + data);
+                },
+                error: function (data) {
+                    console.log("Проблемы с сетью!" + data);
+                }
+            });
+        });
+    });
+</script>

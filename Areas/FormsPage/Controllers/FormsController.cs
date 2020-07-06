@@ -7,6 +7,8 @@ using InsertToForm.UtilCode;
 using DocumentFormat.OpenXml.Packaging;
 using System.Text.RegularExpressions;
 using Org.BouncyCastle.Crypto.Engines;
+using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 /// <summary>
 /// Контроллер для заполнения клиентских данных в формы, которые находятся в папке Resources,
@@ -19,8 +21,9 @@ namespace InsertToForm.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+           return new string[] { "value1", "value2" };
         }
+
         public string Post([FromBody] ClientInfo client)
         {
             DataValid dv = new DataValid();
@@ -38,7 +41,7 @@ namespace InsertToForm.Controllers
             string pathNewFile = pathOutputFolder + newFileName;
             try
             {
-                File.Copy(pathTemplate, pathNewFile, true);
+                File.Copy(pathTemplate, pathNewFile, true);               
             }
             catch
             {

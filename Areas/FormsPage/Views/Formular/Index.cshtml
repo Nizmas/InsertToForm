@@ -15,7 +15,7 @@
     </div>
     <div class="birthblock">
         <b>Дата рождения: </b>
-        <input class="form-birthdate" type="date" placeholder="Дата рождения" /> <br>
+        <input class="form-birthdate" type="date" placeholder="Дата рождения" title="Не менее 18 лет"/> <br>
     </div>
 
     <b>Изображение: </b>
@@ -35,7 +35,8 @@
         <div id="foldersBlock"></div>
     </div> <br>
     <button id="sentdData">Отправить</button>
-
+    <button id="loadDoc">Скачать</button>
+    <button id="printDoc">Распечатать</button>
 
 </body>
 
@@ -68,18 +69,20 @@
             };
             console.log(client);
 
-            $.ajax({
-                url: '/api/Forms',
-                type: 'POST',
-                data: JSON.stringify(client),
-                contentType: "application/json;charset=utf-8",
-                success: function (data) {
-                    console.log("Ответ от сервера:" + data);
-                },
-                error: function (data) {
-                    console.log("Проблемы с сетью!" + data);
-                }
-            });
+            if (CheckDatas(client.LastName, client.FirstName, client.MiddleName, client.BirthDate, client.LoanSum))
+                $.ajax({
+                    url: '/api/Forms',
+                    type: 'POST',
+                    data: JSON.stringify(client),
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        console.log("Ответ от сервера:" + data);
+                    },
+                    error: function (data) {
+                        console.log("Проблемы с сетью!" + data);
+                    }
+                });
+            else alert("Проверьте правильность введённых данных");
         });
     });
 
@@ -102,4 +105,38 @@
         strFolder += "</select>";
         $("#foldersBlock").html(strFolder);
     }
+
+    function CheckDatas(lastname, firstname, middlename, birthdate, loansum) {
+        checker = true;
+        var date = new Date();
+        age = date.getFullYear() - parseInt(birthdate.slice(birthdate.lastIndexOf('.') + 1), 10);
+        if (!/^[А-Я]{1}[а-я]{1,29}$/.test(lastname)) {
+            $(".form-lastname").css("background-color", "#ffe1e8");
+            checker = false;
+        } else $(".form-lastname").css("background-color", "white");
+
+        if (!/^[А-Я]{1}[а-я]{1,29}$/.test(firstname)) {
+            $(".form-firstname").css("background-color", "#ffe1e8");
+            checker = false;
+        } else $(".form-firstname").css("background-color", "white");
+            
+        if (!/^[А-Я]{1}[а-я]{1,29}$/.test(middlename)) {
+            $(".form-middlename").css("background-color", "#ffe1e8");
+            checker = false;
+        } else $(".form-middlename").css("background-color", "white");
+
+        if (age < 18 | isNaN(parseInt(birthdate.slice(birthdate.lastIndexOf('.') + 1), 10))) {
+            $(".form-birthdate").css("background-color", "#ffe1e8");
+            checker = false;
+        } else $(".form-birthdate").css("background-color", "white");
+            
+        if (loansum > 10000 | 1000 > loansum | isNaN(loansum)) {
+            $(".form-loansum").css("background-color", "#ffe1e8");
+            checker = false;
+        } else $(".form-loansum").css("background-color", "white");
+
+        return checker;
+    }
+
+
 </script>

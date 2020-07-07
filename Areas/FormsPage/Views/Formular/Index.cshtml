@@ -5,18 +5,37 @@
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-<h2>Заполнение шаблона документа</h2>
+
 <body>
-    <input class="form-lastname" type="text" placeholder="Фамилия" />
-    <input class="form-firstname" type="text" placeholder="Имя" />
-    <input class="form-middlename" type="text" placeholder="Отчество" />
-    <input class="form-birthdate" type="date" placeholder="Дата рождения" /> <br>
-    <input class="form-loansum" type="number" placeholder="Сумма займа" /> <br>
+    <h2>Заполнение шаблона документа</h2>
+    <div class="namesblock">
+        <b>Фамилия: </b><input class="form-lastname" type="text" placeholder="Иванов" title="Максимум 30 символов" /><br>
+        <b>Имя: </b><input class="form-firstname" type="text" placeholder="Иван" title="Максимум 30 символов" /><br>
+        <b>Отчество: </b><input class="form-middlename" type="text" placeholder="Иванович" title="Максимум 30 символов" />
+    </div>
+    <div class="birthblock">
+        <b>Дата рождения: </b>
+        <input class="form-birthdate" type="date" placeholder="Дата рождения" /> <br>
+    </div>
 
-    <div id="templatesBlock"></div> <br>
-    <div id="foldersBlock"></div> <br>
+    <b>Изображение: </b>
+    <input type="file" accept=".png, .jpg, .jpeg, .bmp">
+    <div class="ajax-reply"></div> <br>
 
+    <b>Сумма займа: </b>
+    <input class="form-loansum" type="number" placeholder="Сумма займа" title="От 1 000 до 10 000 руб." /> <br> <br>
+
+    <div class="templatebox">
+        <b>Выберите шаблон: </b>
+        <div id="templatesBlock"></div>
+    </div>
+
+    <div class="folderbox">
+        <b>Выберите папку: </b>
+        <div id="foldersBlock"></div>
+    </div> <br>
     <button id="sentdData">Отправить</button>
+
 
 </body>
 
@@ -66,7 +85,7 @@
 
     function ShowTemplates(templatesList) {
         var strTemplate = "<select class=\"form-templatenum\">";
-        
+
         $.each(templatesList, function (index, template) {
             strTemplate += "<option value=\"" + index + "\">" + template.slice(template.lastIndexOf('\\') + 1) + "</option> ";
         });

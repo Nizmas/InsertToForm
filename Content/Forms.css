@@ -1,0 +1,44 @@
+﻿body {
+    padding-bottom: 20px;
+    padding-left: 5px;
+}
+
+.namesblock {
+    float: left;
+    width: 270px;
+    height: 100px;
+    text-align: right;
+}
+
+.form-lastname {
+    margin-bottom: 10px;
+    padding: 2px;
+}
+
+.form-firstname {
+    margin-bottom: 10px;
+    padding: 2px;
+}
+
+.form-middlename {
+    margin-bottom: 10px;
+    padding: 2px;
+}
+
+.birthblock {
+    margin-left: 270px;
+    padding-top: 40px;
+    width: 170px;
+    height: 60px;
+    text-align: center;
+}
+
+.form-birthdate {
+    margin-top: 5px;
+}
+
+.templatebox {
+    float: left;
+    width: 150px;
+    display: inline;
+}

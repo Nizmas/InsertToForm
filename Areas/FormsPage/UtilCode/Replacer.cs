@@ -1,6 +1,5 @@
 ﻿using System.Text.RegularExpressions;
 
-
 namespace InsertToForm.UtilCode
 {
     public class Replacer

@@ -6,6 +6,7 @@ using InsertToForm.Models;
 using InsertToForm.UtilCode;
 using DocumentFormat.OpenXml.Packaging;
 using System.Linq;
+using InsertToForm.Areas.FormsPage.UtilCode;
 
 /// <summary>
 /// Контроллер для заполнения клиентских данных в формы, которые находятся в папке Resources,
@@ -72,7 +73,11 @@ namespace InsertToForm.Controllers
                 {
                     sw.Write(docText);
                 }
+                wordDoc.Close();
             }
+            Inserter inserter = new Inserter();
+            inserter.PutImg(pathNewFile, pathFolderDirectories);
+
             return pathNewFile;
         }
     }

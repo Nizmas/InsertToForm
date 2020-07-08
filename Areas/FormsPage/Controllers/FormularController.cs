@@ -34,13 +34,18 @@ namespace InsertToForm.Areas.FormsPage.Controllers
             return File(pdf_path, pdf_type, pdf_name);
         }
 
-        public void Upload(HttpPostedFileBase upload)
+        public ActionResult Upload(HttpPostedFileBase upload)
         {
             if (upload != null)
             {
                 //string fileName = System.IO.Path.GetFileName(upload.FileName);
                 upload.SaveAs(Server.MapPath("~/Documents/" + "inputImage.jpg"));
             }
+            return Content(@"<body>
+                       <script type='text/javascript'>
+                         window.close();
+                       </script>
+                     </body> ");
         }
     }
 }

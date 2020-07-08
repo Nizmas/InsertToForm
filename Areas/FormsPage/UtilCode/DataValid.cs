@@ -11,7 +11,7 @@ namespace InsertToForm.UtilCode
 {
     public class DataValid
     {
-        public bool isValidDatas (string lastName, string firstName, string middleName, string birthDate, int loanSum)
+        public bool IsValidDatas (string lastName, string firstName, string middleName, string birthDate, int loanSum)
         {
             if (!Regex.IsMatch(lastName, "^[А-Я]{1}[а-я]{1,29}$")) return false;
             if (!Regex.IsMatch(firstName, "^[А-Я]{1}[а-я]{1,29}$")) return false;

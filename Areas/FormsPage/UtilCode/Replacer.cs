@@ -5,7 +5,7 @@ namespace InsertToForm.UtilCode
 {
     public class Replacer
     {
-        public string newDoc (string docText, string lastName, string firstName, string middleName, string birthDate, int loanSum)
+        public string NewDoc (string docText, string lastName, string firstName, string middleName, string birthDate, int loanSum)
         {
             Regex regexLastName = new Regex(@"\[.{0,250}lastName.{0,250}\]");
             docText = regexLastName.Replace(docText, lastName);

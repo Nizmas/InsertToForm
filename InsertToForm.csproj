@@ -52,6 +52,9 @@
       <HintPath>packages\DocumentFormat.OpenXml.2.11.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PdfMetamorphosis, Version=8.3.7.7, Culture=neutral, PublicKeyToken=f77041e5caa5fc2f, processorArchitecture=MSIL">
+      <HintPath>packages\sautinsoft.pdfmetamorphosis.8.3.7.7\lib\net48\PdfMetamorphosis.dll</HintPath>
+    </Reference>
     <Reference Include="Spire.Doc, Version=7.11.0.41046, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>packages\FreeSpire.Doc.7.11.0\lib\net46\Spire.Doc.dll</HintPath>
     </Reference>
@@ -174,6 +177,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\FormsPage\Controllers\FormsController.cs" />
     <Compile Include="Areas\FormsPage\Controllers\FormularController.cs" />
+    <Compile Include="Areas\FormsPage\UtilCode\Converter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

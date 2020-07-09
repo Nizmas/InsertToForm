@@ -41,11 +41,9 @@ namespace InsertToForm.Areas.FormsPage.Controllers
                 //string fileName = System.IO.Path.GetFileName(upload.FileName);
                 upload.SaveAs(Server.MapPath("~/Documents/" + "inputImage.jpg"));
             }
-            return Content(@"<body>
-                       <script type='text/javascript'>
+            return Content(@"<body> <script type='text/javascript'>
                          window.close();
-                       </script>
-                     </body> ");
+                       </script> </body> ");
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
+using System.Web;*/
+using Microsoft.Office.Interop.Word;
 
 /// <summary>
 /// Конвертер docx to pdf, триальная версия. Оригинал стоит 539 $
@@ -13,10 +14,14 @@ namespace InsertToForm.UtilCode
     {
         public string ConvertFile (string pathDoc)
         {
-            SautinSoft.PdfMetamorphosis p = new SautinSoft.PdfMetamorphosis();
+            
             string parhPdf = pathDoc.Replace(".docx", ".pdf");
+            //SautinSoft.PdfMetamorphosis p = new SautinSoft.PdfMetamorphosis();
+            //p.DocxToPdfConvertFile(pathDoc, parhPdf);
 
-            p.DocxToPdfConvertFile(pathDoc, parhPdf);
+            Application appWord = new Application();
+            var wordDocument = appWord.Documents.Open(pathDoc);
+            wordDocument.ExportAsFixedFormat(parhPdf, WdExportFormat.wdExportFormatPDF);
 
             return parhPdf;
         }

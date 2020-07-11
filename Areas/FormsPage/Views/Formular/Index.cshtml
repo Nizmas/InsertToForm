@@ -7,7 +7,7 @@
 <script src="~/Scripts/print.min.js"></script>
 
 <body>
-    <h2>Заполнение шаблона документа</h2>
+    <h2>Заполнение шаблона документа</h2> <br>
     <div class="namesblock">
         <b>Фамилия: </b><input class="form-lastname" type="text" placeholder="Иванов" title="Максимум 30 символов" /><br>
         <b>Имя: </b><input class="form-firstname" type="text" placeholder="Иван" title="Максимум 30 символов" /><br>
@@ -18,9 +18,9 @@
         <input class="form-birthdate" type="date" placeholder="Дата рождения" title="Не менее 18 лет" /> <br>
     </div>
 
-    <b>Изображение: </b>
     <form action="/Formular/Upload" enctype="multipart/form-data" method="post" id="Upload" target="_blank">
-        <input type="file" name="Upload" />
+        <b id="img">Изображение: </b>
+        <input type="file" name="Upload" class="form-image" />
     </form> <br>
 
     <b>Сумма займа: </b>
@@ -58,7 +58,7 @@
             }
         });
 
-        $("#sentdData").click(function (event) {
+        $("#sentdData").click(async function (event) {
             event.preventDefault();
             var client = {
                 LastName: $(".form-lastname").val(),
@@ -66,15 +66,17 @@
                 MiddleName: $(".form-middlename").val(),
                 BirthDate: $(".form-birthdate").val().substring(8, 10) + "." + $(".form-birthdate").val().substring(5, 7) + "." + $(".form-birthdate").val().slice(0, -6),
                 LoanSum: parseInt($(".form-loansum").val(), 10),
-                Image: "Here must to be photo",
+                Image: $(".form-image").val().slice($(".form-image").val().lastIndexOf('\\') + 1),
                 TemplateNum: parseInt($(".form-templatenum").val(), 10),
                 FolderNum: parseInt($(".form-foldernum").val(), 10)
             };
             console.log(client);
+            console.log($(".form-image").val());
+            console.log($(".form-image").val().slice($(".form-image").val().lastIndexOf('\\') + 1));
 
             if (CheckDatas(client.LastName, client.FirstName, client.MiddleName, client.BirthDate, client.LoanSum)) {
 
-                $("#Upload").submit();
+                await $("#Upload").submit();
 
                 $.ajax({
                     url: '/api/Forms',

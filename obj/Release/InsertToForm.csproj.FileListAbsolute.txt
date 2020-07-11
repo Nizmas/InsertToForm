@@ -118,3 +118,5 @@ C:\Users\User\Desktop\Рабочая папка\InsertToForm\obj\Release\InsertT
 C:\Users\User\Desktop\Рабочая папка\InsertToForm\obj\Release\InsertToForm.pdb
 C:\Users\User\Desktop\Рабочая папка\InsertToForm\bin\PdfMetamorphosis.dll
 C:\Users\User\Desktop\Рабочая папка\InsertToForm\bin\PdfMetamorphosis.xml
+C:\Users\User\Desktop\Рабочая папка\InsertToForm\bin\GemBox.Document.dll
+C:\Users\User\Desktop\Рабочая папка\InsertToForm\bin\GemBox.Document.xml

@@ -7,6 +7,11 @@ using InsertToForm.UtilCode;
 using DocumentFormat.OpenXml.Packaging;
 using System.Linq;
 using InsertToForm.Areas.FormsPage.UtilCode;
+using GemBox.Document;
+using Spire.Doc;
+using Spire.Doc.Documents;
+using Spire.Doc.Fields;
+using System.Drawing;
 
 /// <summary>
 /// Контроллер для заполнения клиентских данных в формы, которые находятся в папке Resources,
@@ -49,36 +54,9 @@ namespace InsertToForm.Controllers
                 templateName = templateName.Remove(templateName.IndexOf("."));
             string newFileName = templateName + " " + client.FirstName + " " + client.LastName + " от " + currentDate.ToLongDateString().Replace(".", "") + ".docx";
             string pathNewFile = pathOutputFolder + newFileName;
-            try
-            {
-                File.Copy(pathTemplate, pathNewFile, true);               
-            }
-            catch
-            {
-                return "Шаблон не найден, проверьте правильность названия или обратитесь к администратору";
-            }
 
-            using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(pathNewFile, true))
-            {
-                string docText = null;
-                using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
-                {
-                    docText = sr.ReadToEnd();
-                }
-
-                Replacer repl = new Replacer();
-                docText = repl.NewDoc(docText, client.LastName, client.FirstName, client.MiddleName, client.BirthDate, client.LoanSum);
-
-                using (StreamWriter sw = new StreamWriter(wordDoc.MainDocumentPart.GetStream(FileMode.Create)))
-                {
-                    sw.Write(docText);
-                }
-                wordDoc.Close();
-            }
-            Inserter inserter = new Inserter();
-            inserter.PutImg(pathNewFile, pathFolderDirectories);
-
-            return pathNewFile;
+            Replacer repl = new Replacer();
+            return repl.NewDoc(pathTemplate, pathNewFile, client.LastName, client.FirstName, client.MiddleName, client.BirthDate, client.LoanSum, client.Image);
         }
     }
 }

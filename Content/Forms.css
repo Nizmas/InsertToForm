@@ -1,8 +1,7 @@
 ﻿body {
+    padding-top: 50px;
     padding-bottom: 20px;
-    padding-left: 5px;
 }
-
 .namesblock {
     float: left;
     width: 270px;
@@ -26,8 +25,7 @@
 }
 
 .birthblock {
-    margin-left: 270px;
-    padding-top: 40px;
+    margin-left: 300px;
     width: 170px;
     height: 60px;
     text-align: center;
@@ -41,4 +39,12 @@
     float: left;
     width: 150px;
     display: inline;
+}
+
+#Upload {
+    padding-left: 300px;
+}
+
+#img {
+    padding-left: 30px;
 }

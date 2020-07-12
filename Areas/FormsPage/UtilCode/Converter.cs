@@ -16,8 +16,6 @@ namespace InsertToForm.UtilCode
         {
             
             string parhPdf = pathDoc.Replace(".docx", ".pdf");
-            //SautinSoft.PdfMetamorphosis p = new SautinSoft.PdfMetamorphosis();
-            //p.DocxToPdfConvertFile(pathDoc, parhPdf);
 
             Application appWord = new Application();
             var wordDocument = appWord.Documents.Open(pathDoc);

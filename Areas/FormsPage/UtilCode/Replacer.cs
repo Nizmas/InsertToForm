@@ -53,7 +53,15 @@ namespace InsertToForm.UtilCode
 
             foreach (FileInfo file in dirInfo.GetFiles())
             {
-                file.Delete();
+                try
+                {
+                    file.Delete();
+                }
+                catch
+                {
+                    System.Threading.Thread.Sleep(2000);
+                    file.Delete();
+                }
             }
 
             return pathFile;

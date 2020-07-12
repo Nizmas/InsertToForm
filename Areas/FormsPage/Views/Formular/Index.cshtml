@@ -36,9 +36,9 @@
         <div id="foldersBlock"></div>
     </div> <br>
 
-    <button id="sentdData">Отправить</button>
-    <button id="loadDoc">Скачать</button>
-    <button id="printDoc">Распечатать</button>
+    <button id="sentdData" >Отправить</button>
+    <button id="loadDoc" disabled="disabled">Скачать</button>
+    <button id="printDoc" disabled="disabled">Распечатать</button>
 
 </body>
 
@@ -90,9 +90,11 @@
                         pathFile = pathFile.replace(newPathFile, "")
                         pathFile = pathFile.slice(pathFile.lastIndexOf('\\') + 1) + newPathFile;
                         console.log(pathFile);
+                        $("#loadDoc").prop("disabled", false);
+                        $("#printDoc").prop("disabled", false);
                     },
                     error: function (data) {
-                        console.log("Проблемы с сетью!" + data);
+                        console.log("Ошбика!" + data);
                     }
                 });
             }
@@ -158,7 +160,7 @@
             checker = false;
         } else $(".form-middlename").css("background-color", "white");
 
-        if (age < 18 | isNaN(parseInt(birthdate.slice(birthdate.lastIndexOf('.') + 1), 10))) {
+        if (age < 18 | isNaN(parseInt(birthdate.slice(birthdate.lastIndexOf('.') + 1), 10)) | age > 110) {
             $(".form-birthdate").css("background-color", "#ffe1e8");
             checker = false;
         } else $(".form-birthdate").css("background-color", "white");

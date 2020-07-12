@@ -4,14 +4,7 @@ using System.Web.Http;
 using System.IO;
 using InsertToForm.Models;
 using InsertToForm.UtilCode;
-using DocumentFormat.OpenXml.Packaging;
 using System.Linq;
-using InsertToForm.Areas.FormsPage.UtilCode;
-using GemBox.Document;
-using Spire.Doc;
-using Spire.Doc.Documents;
-using Spire.Doc.Fields;
-using System.Drawing;
 
 /// <summary>
 /// Контроллер для заполнения клиентских данных в формы, которые находятся в папке Resources,

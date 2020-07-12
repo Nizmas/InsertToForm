@@ -184,7 +184,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\FormsPage\Controllers\FormsController.cs" />
     <Compile Include="Areas\FormsPage\Controllers\FormularController.cs" />
-    <Compile Include="Areas\FormsPage\UtilCode\Inserter.cs" />
     <Compile Include="Areas\FormsPage\UtilCode\Converter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
